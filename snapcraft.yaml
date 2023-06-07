@@ -1,0 +1,30 @@
+name: osgg-linux # you probably want to 'snapcraft register <name>'
+base: core18 # the base snap is the execution environment for this snap
+version: '2.5.0' # just for humans, typically '1.2+git' or '1.3.2'
+summary: A retro gravity game
+description: |
+  A retro gravity game
+
+grade: stable # must be 'stable' to release into candidate/stable channels
+confinement: strict # use 'strict' once you have the right plugs and slots
+icon:  osgg_icon.png
+title: Old School Gravity Game
+
+apps:
+  osgg:
+    command: start.sh
+parts:
+  osgg:
+    # See 'snapcraft plugins'
+    plugin: dump
+    source: .
+#    build-packages: [default-jre]
+#    stage-packages: [default-jre]
+    organize:
+      osgg: build/
+      osgg.1: man/man1/
+
+architectures:
+  - build-on: amd64
+  - build-on: i386
+
